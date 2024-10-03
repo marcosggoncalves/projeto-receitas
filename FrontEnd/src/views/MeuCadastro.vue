@@ -4,10 +4,9 @@ import Carregamento from "@/components/Carregamento.vue";
 import { useAuthStore } from "@/stores/usuario";
 import { useNotification } from "@kyvg/vue3-notification";
 import router from "@/router/index";
-import moment from "moment";
 
 const { notify } = useNotification();
-const { usuario, getUsuario, resetState } = useAuthStore();
+const { usuario, getUsuario } = useAuthStore();
 
 const carregamento = ref(false);
 const cadastro = ref({});

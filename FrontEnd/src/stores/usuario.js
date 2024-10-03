@@ -76,9 +76,7 @@ export const useAuthStore = defineStore("auth", {
       }
     },
     async salvar(cadastro) {
-      try {
-        console.log(router.currentRoute.name)
-
+      try { 
         if(router && router.currentRoute.name == 'Page Inicial'){
           this.resetState();
         }

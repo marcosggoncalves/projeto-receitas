@@ -1,15 +1,19 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import api_token from "@/globais/api.receitas";
 import { useAuthStore } from "@/stores/usuario";
 import { useNotification } from "@kyvg/vue3-notification";
-import moment from "moment";
+import router from "@/router";
 
 const { notify } = useNotification();
 
 const carregamento = ref(false);
 const cadastro = ref({});
 const errors = ref({});
+
+const limparCampos = () => {
+  errors.value = {};
+  cadastro.value = {};
+};
 
 const salvarCadastro = async () => {
   try {
@@ -18,13 +22,20 @@ const salvarCadastro = async () => {
     const response = await useAuthStore().salvar(cadastro.value);
 
     if (response?.status === false) {
-      handleErrorResponse(response);
+      notify({ type: "error", text: response.message });
+
+      errors.value = response.errors || {};
+
       return;
     }
 
+    limparCampos();
+
     notify({ type: "success", text: response.message });
 
-    redirectToLogin();
+    setTimeout(() => {
+      router.push("/login");
+    }, 1000);
   } catch (error) {
     notify({ type: "error", text: error.toString() });
   } finally {
@@ -32,20 +43,8 @@ const salvarCadastro = async () => {
   }
 };
 
-const handleErrorResponse = (response) => {
-  notify({ type: "error", text: response.message });
-  errors.value = response.errors || {};
-};
-
-const redirectToLogin = () => {
-  setTimeout(() => {
-    window.location.href = "/login";
-  }, 1000);
-};
-
 onMounted(async () => {
-  errors.value = {};
-  cadastro.value = {};
+  limparCampos();
 });
 </script>
 
@@ -53,7 +52,11 @@ onMounted(async () => {
   <v-app>
     <v-app-bar elevation="0" color="white">
       <v-toolbar-title class="logo">
-        <v-img src="/img/logo_verde.png" alt=" Minhas Receitas | Teste" max-width="64" />
+        <v-img
+          src="/img/logo_verde.png"
+          alt=" Minhas Receitas | Teste"
+          max-width="64"
+        />
       </v-toolbar-title>
     </v-app-bar>
     <v-row dense class="bannerWidthHeight">
@@ -61,36 +64,70 @@ onMounted(async () => {
         <div class="banner-titulo">
           <h1>Minhas Receitas</h1>
           <p>
-            Aqui você encontra todos suas receitas organizadas para acessa-lá de qualquer lugar.
+            Aqui você encontra todos suas receitas organizadas para acessa-lá de
+            qualquer lugar.
           </p>
           <p>Gerência suas receitas agora mesmo, acesse nosso painel</p>
-          <v-btn to="/login"   class="mt-4" color="#4068a8">
+          <v-btn to="/login" class="mt-4" color="#4068a8">
             <v-icon left class="pr-2">mdi-login</v-icon>
             ACESSAR PAINEL
           </v-btn>
         </div>
       </v-col>
       <v-col cols="12" md="6" class="form-cadastro">
-        <v-card max-width="600" elevation="1" title="Faça seu cadastro"
-          subtitle="Cadastre-se e gerência suas receitas agora mesmo">
-          <v-form ref="form" class="pr-5 pl-5 pb-5" @submit.prevent="salvarCadastro">
+        <v-card
+          max-width="600"
+          elevation="1"
+          title="Faça seu cadastro"
+          subtitle="Cadastre-se e gerência suas receitas agora mesmo"
+        >
+          <v-form
+            ref="form"
+            class="pr-5 pl-5 pb-5"
+            @submit.prevent="salvarCadastro"
+          >
             <v-row dense>
               <v-col cols="12">
-                <v-text-field v-model="cadastro.nome" color="#4068a8" :error-messages="errors && errors.nome"
-                  label="Nome Completo:*" placeholder="Informe seu nome completo:" density="compact"
-                  variant="outlined" />
+                <v-text-field
+                  v-model="cadastro.nome"
+                  color="#4068a8"
+                  :error-messages="errors && errors.nome"
+                  label="Nome Completo:*"
+                  placeholder="Informe seu nome completo:"
+                  density="compact"
+                  variant="outlined"
+                />
               </v-col>
               <v-col cols="12">
-                <v-text-field v-model="cadastro.login" color="#4068a8" :error-messages="errors && errors.login"
-                  label="Login:*" placeholder="Informe usuário para login" density="compact" variant="outlined" />
+                <v-text-field
+                  v-model="cadastro.login"
+                  color="#4068a8"
+                  :error-messages="errors && errors.login"
+                  label="Login:*"
+                  placeholder="Informe usuário para login"
+                  density="compact"
+                  variant="outlined"
+                />
               </v-col>
               <v-col cols="12">
-                <v-text-field v-model="cadastro.senha" color="#4068a8" :error-messages="errors && errors.senha"
-                  label="Senha:*" placeholder="Digite uma senha:" type="password" density="compact"
-                  variant="outlined" />
+                <v-text-field
+                  v-model="cadastro.senha"
+                  color="#4068a8"
+                  :error-messages="errors && errors.senha"
+                  label="Senha:*"
+                  placeholder="Digite uma senha:"
+                  type="password"
+                  density="compact"
+                  variant="outlined"
+                />
               </v-col>
             </v-row>
-            <v-btn type="submit" :loading="carregamento" class="mt-2" color="#4068a8">
+            <v-btn
+              type="submit"
+              :loading="carregamento"
+              class="mt-2"
+              color="#4068a8"
+            >
               <v-icon left>mdi-check</v-icon>
               Salvar
             </v-btn>

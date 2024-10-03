@@ -173,8 +173,8 @@ onMounted(async () => {
     </section>
     <!-- Criar Nova Receita -->
     <v-dialog v-model="dialogNovaReceita" width="700">
-      <v-card class="pa-5" title="Criar Nova Receita">
-        <v-form ref="form" class="mt-5" @submit.prevent="salvarReceita">
+      <v-card :title=" receita && !receita?.id ? 'Criar Nova Receita' : 'Editar Receita'">
+        <v-form ref="form" class="pa-5" @submit.prevent="salvarReceita">
           <v-row dense>
             <v-col cols="12" md="6">
               <v-text-field
@@ -273,30 +273,26 @@ onMounted(async () => {
 
     <!-- Visualizar Receita -->
     <v-dialog v-model="dialogVisuliazarReceita" width="800">
-      <v-card
-        class="pa-5"
-        :title="receita?.nome"
-        :subtitle="receita?.categoria?.nome"
-      >
+      <v-card> 
         <section class="receita-visualizar" ref="receitaPrint">
           <div class="dados">
+            <h1>{{receita?.nome}} ({{receita?.categoria?.nome}})</h1> 
             <ul>
               <li>
-                <v-icon>mdi-tea-outline</v-icon
-                ><strong>Porções: {{ receita?.porcoes }}</strong>
+                <v-icon>mdi-tea-outline</v-icon> Porções: {{ receita?.porcoes }}
               </li>
               <li>
                 <v-icon>mdi-timer</v-icon
-                ><strong>{{ receita?.tempoPreparoMinutos }} min.</strong>
+                > {{ receita?.tempoPreparoMinutos }} min. 
               </li>
             </ul>
             <div class="modo-preparo">
               <h1><v-icon>mdi-account-clock</v-icon> Modo Preparo</h1>
-              <p v-text="receita?.modoPreparo"></p>
+              <pre v-text="receita?.modoPreparo"></pre>
             </div>
             <div class="ingredientes">
               <h1><v-icon>mdi-basket</v-icon> Ingredientes</h1>
-              <p v-text="receita?.modoPreparo"></p>
+              <pre v-text="receita?.ingredientes"></pre>
             </div>
           </div>
         </section>
@@ -308,11 +304,11 @@ onMounted(async () => {
             @click="excluirReceita(receita?.id)"
           >
             <v-icon>mdi-close</v-icon>
-            EXCLUIR RECEITA
+            EXCLUIR
           </v-btn>
           <v-btn size="small" text @click="abrirModalNovaReceita(receita?.id)">
             <v-icon>mdi-pencil</v-icon>
-            EDITAR RECEITA
+            EDITAR
           </v-btn>
           <v-btn
             class="ms-auto"
