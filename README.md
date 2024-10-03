@@ -1,7 +1,3 @@
-Aqui está a versão ajustada para o "Projeto Receitas":
-
----
-
 ## Iniciando a Aplicação
 
 Para iniciar a aplicação, siga estes passos:
