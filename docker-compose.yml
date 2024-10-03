@@ -1,0 +1,36 @@
+version: '3.9'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3333:3333"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: receitas@9185   
+      MYSQL_DATABASE: receitas        
+      MYSQL_USER: receitas                      
+      MYSQL_PASSWORD: receitas@9185            
+    ports:
+      - "3306:3306"
+    volumes: 
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: receitas                  
+      PMA_PASSWORD: receitas@9185             
+
+volumes:
+  mysql_data:
