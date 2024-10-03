@@ -1,4 +1,4 @@
-import Usuario from "#models/Usuario";
+import Usuario from "#models/user";
 import { AccessToken } from "@adonisjs/auth/access_tokens";
 import { IUsuario } from "../contracts/IUsuario.js";
 import { IUsuarioModel } from "../types/usuario_type.js";

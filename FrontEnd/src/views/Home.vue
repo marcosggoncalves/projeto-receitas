@@ -82,7 +82,7 @@ onMounted(async () => {
               </v-col>
               <v-col cols="12">
                 <v-text-field v-model="cadastro.login" color="#4068a8" :error-messages="errors && errors.login"
-                  label="Telefone:*" placeholder="Informe usuário para login" density="compact" variant="outlined" />
+                  label="Login:*" placeholder="Informe usuário para login" density="compact" variant="outlined" />
               </v-col>
               <v-col cols="12">
                 <v-text-field v-model="cadastro.senha" color="#4068a8" :error-messages="errors && errors.senha"

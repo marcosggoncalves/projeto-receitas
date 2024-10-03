@@ -77,6 +77,12 @@ export const useAuthStore = defineStore("auth", {
     },
     async salvar(cadastro) {
       try {
+        console.log(router.currentRoute.name)
+
+        if(router && router.currentRoute.name == 'Page Inicial'){
+          this.resetState();
+        }
+
         const id = this.usuario?.id;
 
         const endpoint = id  ? `/api/usuarios/${id}` : '/api-publica/registrar';

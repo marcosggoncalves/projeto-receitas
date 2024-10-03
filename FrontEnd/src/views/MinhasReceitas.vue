@@ -47,7 +47,7 @@ const excluirReceita = async (id) => {
   try {
     const response = await api.delete(`/api/receitas/${id}`);
 
-    notify({ type: "sucess", text: response.data });
+    notify({ type: "success", text: "Receita excluida com sucesso!"});
 
     dialogVisuliazarReceita.value = !dialogVisuliazarReceita.value;
 
