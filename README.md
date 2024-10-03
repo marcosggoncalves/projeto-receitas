@@ -4,18 +4,13 @@ Para iniciar a aplicação, siga estes passos:
 
 1. Abra um terminal.
 2. Navegue até o diretório raiz do projeto.
-3. Execute o seguinte comando para iniciar a instalação das dependencias:
+3. Execute o seguinte comando para iniciar:
 
+1. Instalação das dependencias
 ```
    npm install
 ```
-
-Subindo aplicação:
-
-1. Abra um terminal.
-2. Navegue até o diretório raiz do projeto.
-3. Execute o seguinte comando para iniciar a instalação das dependencias:
-
+1. Subir API na port:3333
 ```
    npm run dev
 ```
