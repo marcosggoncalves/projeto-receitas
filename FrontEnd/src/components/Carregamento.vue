@@ -8,7 +8,7 @@
         <v-list-item :title="message" >
           <template v-slot:append >
             <v-progress-circular
-              color="#006b33"
+              color="#4068a8"
               indeterminate
               :size="size" 
             ></v-progress-circular>

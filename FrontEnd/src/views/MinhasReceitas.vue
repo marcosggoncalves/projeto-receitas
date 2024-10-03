@@ -75,7 +75,7 @@ const salvarReceita = async () => {
       idUsuario,
     });
 
-    notify({ type: "success", text: response.data.message });
+  notify({ type: "success", text: "Receita salva com sucesso!"  });
 
     dialogNovaReceita.value = !dialogNovaReceita.value;
 
@@ -137,6 +137,9 @@ const abrirModalNovaReceita = async (id = null) => {
   errors.value = {};
 
   if (id != null) {
+    
+    dialogVisuliazarReceita.value = !dialogVisuliazarReceita.value;
+    
     receita.value = await detalharReceita(id);
   }
 
@@ -245,13 +248,13 @@ onMounted(async () => {
             </v-col>
           </v-row>
           <v-btn
-            @click="abrirModalNovaReceita"
+            @click="abrirModalNovaReceita()"
             variant="text"
             color="red"
             size="small"
             class="mt-2"
           >
-            <v-icon>mdi-close</v-icon> Cancelars
+            <v-icon>mdi-close</v-icon> Cancelar
           </v-btn>
 
           <v-btn
