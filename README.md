@@ -4,24 +4,49 @@ Para iniciar a aplicação, siga estes passos:
 
 1. Abra um terminal.
 2. Navegue até o diretório raiz do projeto.
-3. Execute o seguinte comando para iniciar:
+3. Execute o seguinte comando para iniciar os contêineres Docker em segundo plano:
 
-1. Instalação das dependencias
 ```
-   npm install
+   docker-compose up -d
 ```
-1. Subir API na port:3333
+
+Isso iniciará todos os serviços necessários para a aplicação **Projeto Receitas**.
+
+## Parando a Aplicação
+
+Para parar a aplicação e desligar os contêineres Docker, siga estes passos:
+
+1. Abra um terminal.
+2. Navegue até o diretório raiz do projeto.
+3. Execute o seguinte comando:
+
 ```
-   npm run dev
+   docker-compose down
 ```
+
+Isso desligará todos os contêineres Docker relacionados à aplicação **Projeto Receitas**.
 
 ## Executando Comandos Específicos
 
-Para executar comandos para criação do banco de dados:
+Para executar comandos específicos dentro do contêiner `backend-api-1`, siga estes passos:
+
+1. Abra um terminal.
+2. Execute o seguinte comando para acessar o terminal do contêiner `backend-api-1`:
 
 ```
-   node ace migration:run
-   node ace db:seed
+   docker exec -it receitas-backend-1 /bin/bash
+```
+
+Isso abrirá um terminal dentro do contêiner.
+
+3. Dentro do terminal do contêiner, execute os comandos desejados, como por exemplo:
+
+```
+ node ace db:seed
+```
+
+```
+  node ace migration:run
 ```
 Aqui está a seção apenas para iniciar o frontend:
 
