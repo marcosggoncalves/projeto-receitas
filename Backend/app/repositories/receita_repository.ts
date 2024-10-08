@@ -19,7 +19,7 @@ class ReceitaRepository implements IRepositoryReceita<IReceita> {
   
     return receita ? (receita as IReceitaModel) : null;
   }
-  async findAll(id: number): Promise<IReceitaModel[]> {
+  async findAll(id: number, search?:null): Promise<IReceitaModel[]> {
     const receitas = await Receita.query()
       .select('id', 'nome', 'tempoPreparoMinutos', 'porcoes', 'id_categoria')
       .preload('categoria', (query) => {
@@ -27,6 +27,9 @@ class ReceitaRepository implements IRepositoryReceita<IReceita> {
       })
       .if(id, (query) => {
         query.where('id_usuario', id);
+      })
+      .if(search, (query) => {
+        query.where('nome', 'ilike', `%${search}%`);
       })
       .exec();
 

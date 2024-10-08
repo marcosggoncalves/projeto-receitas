@@ -28,11 +28,12 @@ export default class ReceitaController {
 
         return response.json(receita);
     }
-    public async index({ response, auth}: HttpContext) {
+    public async index({ request,  response, auth}: HttpContext) {
+        const {search } =  request.qs();
 
         const logado = await auth.authenticate();
 
-        const receitas = await ReceitaService.findAll(logado?.id);
+        const receitas = await ReceitaService.findAll(logado?.id, search);
 
         return response.json(receitas);
     }
