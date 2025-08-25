@@ -69,7 +69,3 @@ Aqui está a seção apenas para iniciar o frontend:
    ```
 
 Isso irá rodar o frontend em modo de desenvolvimento e permitir visualizar a aplicação no navegador.
-
-## Observações
-
-Certifique-se de ter as dependências necessárias instaladas, como Docker e Docker Compose, antes de tentar iniciar a aplicação.
