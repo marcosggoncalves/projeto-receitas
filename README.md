@@ -45,9 +45,6 @@ Isso abrirá um terminal dentro do contêiner.
   - node ace migration:run
   - node ace db:seed
 ```
-Aqui está a seção apenas para iniciar o frontend:
-
----
 
 ## Iniciando o Frontend
 
@@ -65,3 +62,17 @@ Aqui está a seção apenas para iniciar o frontend:
    npm run dev
    ```
 
+ ## Tela 1 - Login
+![Painel da Aplicação - TELA 1](https://github.com/marcosggoncalves/projeto-receitas/blob/master/Prints/Login.png)
+
+ ## Tela 2 - Cadastro 
+![Painel da Aplicação - TELA 1](https://github.com/marcosggoncalves/projeto-receitas/blob/master/Prints/Cadastro.png)
+
+ ## Tela 3 - Minhas Receitas 
+![Painel da Aplicação - TELA 1](https://github.com/marcosggoncalves/projeto-receitas/blob/master/Prints/Painel.png)
+
+ ## Tela 4 - Cadastrar Nova Receita
+![Painel da Aplicação - TELA 1](https://github.com/marcosggoncalves/projeto-receitas/blob/master/Prints/Nova%20Receita.png)
+
+ ## Tela 5 - Edita Cadastro
+![Painel da Aplicação - TELA 1](https://github.com/marcosggoncalves/projeto-receitas/blob/master/Prints/Meu%20Cadastro.png)
