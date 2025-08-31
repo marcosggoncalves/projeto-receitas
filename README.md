@@ -42,11 +42,8 @@ Isso abrirá um terminal dentro do contêiner.
 3. Dentro do terminal do contêiner, execute os comandos desejados, como por exemplo:
 
 ```
- node ace db:seed
-```
-
-```
-  node ace migration:run
+  - node ace migration:run
+  - node ace db:seed
 ```
 Aqui está a seção apenas para iniciar o frontend:
 
@@ -68,4 +65,3 @@ Aqui está a seção apenas para iniciar o frontend:
    npm run dev
    ```
 
-Isso irá rodar o frontend em modo de desenvolvimento e permitir visualizar a aplicação no navegador.
